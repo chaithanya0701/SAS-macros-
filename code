@@ -1,0 +1,15 @@
+%macro NumericDates (indtc=, outdt, outtm, outdtm=);
+*=====Date variable=====;
+%if &outdt.^= then do; 
+%if length(&indtc.) ge 10 then &outdt.=input(&indtc., E8601DA.); format &outdt. date9.;
+%end;
+*======Time variable====;
+%if &outtm.^= then do; 
+if index(&indtc., "T") then do; format &outtm. time5.; &outtm.=input (scan (&indtc., 2, "T"), E8601TM.); end
+
+%end;
+*=======Date and Time variable======;
+%if &outdtm.^= %then do;
+if length (&indtc.) ge 11 then &outdum.=input(&indtc., E8601DT.); format &outdtm. datetime16.;
+%end;
+%mend NumericDates;
