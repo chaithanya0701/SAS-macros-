@@ -1,3 +1,4 @@
+# 1. SDTM-date-to-ADaM-date (read description to know more)
 %macro NumericDates (indtc=, outdt, outtm, outdtm=);
 *=====Date variable=====;
 %if &outdt.^= then do; 
